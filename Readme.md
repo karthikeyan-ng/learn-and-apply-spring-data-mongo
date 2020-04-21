@@ -96,3 +96,14 @@ Use `PUT` `/legostore/api` to Update a Document to MongoDB. Here I have changed 
 }
 ```
 
+### Delete a Document
+
+Use `DELETE` `/legostore/api/{id}` to Delete a Document to MongoDB.  
+>Example: `/legostore/api/5e9f3533da730013c3acb0df`  
+
+To verify this Delete, execute `/all`
+
+
+  
+
+
