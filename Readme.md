@@ -13,7 +13,7 @@
 Make use of online MongoDB cloud platform to create a Database and querying with it by using https://cloud.mongodb.com
 
 ## Insert
-Use `POST` `legostore/api` to insert json to MongoDB
+Use `POST` `/legostore/api` to insert json to MongoDB
 ```json
 {
 	"name": "NASA Apollo Saturn V",
@@ -57,5 +57,28 @@ Use `GET` `/all` to get all the values from MongoDB Collection
         "nbParts": 0
     }
 ]
+```
+
+### Update a document
+Use `PUT` `/legostore/api` to Update a Document to MongoDB. Here I have changed `userName` value.
+```json
+{
+    "id": "5e9f369cda730013c3acb0e0",
+    "name": "NASA Apollo Saturn V",
+    "difficulty": "MEDIUM",
+    "theme": "NASA",
+    "reviews": [
+        {
+            "userName": "Karthi",
+            "rating": 9
+        }
+    ],
+    "deliveryInfo": {
+        "deliveryDate": "2020-04-21",
+        "deliveryFee": 50,
+        "inStock": true
+    },
+    "nbParts": 0
+}
 ```
 
