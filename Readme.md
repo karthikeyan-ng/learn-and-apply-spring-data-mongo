@@ -128,7 +128,24 @@ Use `mongoTemplate.dropCollection(LegoSet.class)`
 
 ## MongoRepository
 
+In order to create a Mongo Repository, refer below code snippet.
+```java
+import com.techstack.mongo.model.LegoSet;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-  
+public interface LegoSetRepository extends MongoRepository<LegoSet, String> {
+}
+```
+
+### Method Name Composition
+Spring Data can provide proxy implementation of queries based on method names:
+
+- **findBy**LastName
+- **findBy**Age**LessThan**
+- **findBy**Active**True**
+
+For more information refer [JPA Query Methods and Query Creation](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation)
+
+
 
 
