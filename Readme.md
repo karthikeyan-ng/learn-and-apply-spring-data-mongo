@@ -237,3 +237,10 @@ public interface LegoSetRepository extends MongoRepository<LegoSet, String>, Que
     
 }
 ```
+
+### Data Projections
+Our Manager wants a report on all the lego sets and their **average rating** so he can optimize sales.  
+    It's mainly for  
+    - Report purpose  
+    - Aggregation  
+    - Data Transformation
