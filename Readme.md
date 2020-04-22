@@ -12,6 +12,8 @@
 ## References
 Make use of online MongoDB cloud platform to create a Database and querying with it by using https://cloud.mongodb.com
 
+## MongoTemplate
+
 ### Insert
 Use `POST` `/legostore/api` to insert json to MongoDB  
 
@@ -115,7 +117,16 @@ To verify this Delete, execute `/all`
 
 Use `mongoTemplate.dropCollection(LegoSet.class)`  
 
+## Difference Between MongoTemplate and MongoRepository
 
+| MongoTemplate                                                    | MongoRepository                                                                      |
+|------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| +More flexible and powerful (more complex queries, aggregations) | +Easier to use because they are a higher abstraction (90% cases)                     |
+| -Low level; You need to know how Mongo queries work              | +Friendly syntax for filtering data                                                  |
+|                                                                  | + Build on top of JPA, consistent syntax, same methods as repositories over SQL      |
+|                                                                  | - Do not work on all use cases; Sometimes you need to fall back to the MongoTemplate |
+
+## MongoRepository
 
 
   
