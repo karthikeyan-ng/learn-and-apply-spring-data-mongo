@@ -69,4 +69,9 @@ public class LegoStoreControllerV1 {
     public List<LegoSet> byGreatReviews() {
         return this.legoSetRepository.findAllByGreatReviews();
     }
+
+    @GetMapping("/notStarWarsTheme")
+    public List<LegoSet> findAllNotStarWars(){
+        return this.legoSetRepository.findAllByThemeIsNot("Star Wars");
+    }
 }

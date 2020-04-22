@@ -6,7 +6,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface LegoSetRepository extends MongoRepository<LegoSet, String> {
@@ -20,4 +19,6 @@ public interface LegoSetRepository extends MongoRepository<LegoSet, String> {
 
     @Query("{'reviews.rating' : {$eq : 10}}")
     List<LegoSet> findAllByGreatReviews();
+
+    List<LegoSet> findAllByThemeIsNot(String theme);
 }
