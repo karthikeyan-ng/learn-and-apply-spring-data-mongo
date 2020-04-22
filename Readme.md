@@ -168,7 +168,41 @@ To solve this issue, we can use QueryDSL.
 - We can then use query types in out code to build complex queries in a 
 type safe manner.
  
-
-
+### Query DSL Maven Dependencies
+To start using QueryDSL for Mongo we need to bring in:
+- Library Dependencies
+```xml
+<dependency>
+    <groupId>com.querydsl</groupId>
+    <artifactId>querydsl-mongodb</artifactId>
+    <version>4.0.0</version>
+</dependency>
+<dependency>
+    <groupId>com.querydsl</groupId>
+    <artifactId>querydsl-apt</artifactId>
+    <version>4.0.0</version>
+</dependency>
+```
+- Plugin    
+```xml
+<plugin>
+    <groupId>com.mysema.maven</groupId>
+    <artifactId>apt-maven-plugin</artifactId>
+    <version>1.1.3</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>process</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>target/generated-sources/java</outputDirectory>
+                <processor>
+                    org.springframework.data.mongodb.repository.support.MongoAnnotationProcessor
+                </processor>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
 
 
