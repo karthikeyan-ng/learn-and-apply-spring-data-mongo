@@ -103,6 +103,12 @@ Use `DELETE` `/legostore/api/{id}` to Delete a Document to MongoDB.
 
 To verify this Delete, execute `/all`
 
+### Drop all the Documents from the MongoDB Collection
+
+Use `mongoTemplate.dropCollection(LegoSet.class)`  
+
+
+
 
   
 
