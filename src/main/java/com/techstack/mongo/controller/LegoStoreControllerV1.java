@@ -58,7 +58,7 @@ public class LegoStoreControllerV1 {
     }
 
     @GetMapping("/byDeliveryFee/{price}")
-    public List<LegoSet> byDeliveryFeeLeassThan(@PathVariable int price) {
+    public List<LegoSet> byDeliveryFeeLessThan(@PathVariable int price) {
         return this.legoSetRepository.findAllByDeliveryPriceLessThan(price);
     }
 }
