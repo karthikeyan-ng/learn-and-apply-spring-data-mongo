@@ -152,7 +152,22 @@ use `@Query` annotation.
 
 `@Query("{'_id':'123'}")`  
 
+## Query DSL
+Don't always use `@Query` annotation which contains statically typed queries. Because, if you change your Class property
+you have to change your query accordingly.  
 
+To solve this issue, we can use QueryDSL.
+
+- QueryDSL allows us to write queries that are type safe.
+- No more magic Strings
+
+### How it works?
+- Scans all classes annotated with `@Document` and their children.
+- Generates "Query Types" during the process goal of Maven build.
+    - For Example: for a `LegoSet` class ==> QLegoSet class.
+- We can then use query types in out code to build complex queries in a 
+type safe manner.
+ 
 
 
 
