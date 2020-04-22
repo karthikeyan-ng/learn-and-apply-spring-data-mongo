@@ -4,6 +4,7 @@ import com.techstack.mongo.model.LegoSet;
 import com.techstack.mongo.model.LegoSetDifficulty;
 import com.techstack.mongo.repo.LegoSetRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,8 @@ public class LegoStoreControllerV1 {
 
     @GetMapping("/all")
     public List<LegoSet> getAll() {
-        return this.legoSetRepository.findAll();
+        Sort sortByThemeAsc = Sort.by("theme").ascending();
+        return this.legoSetRepository.findAll(sortByThemeAsc);
     }
 
     @PutMapping
