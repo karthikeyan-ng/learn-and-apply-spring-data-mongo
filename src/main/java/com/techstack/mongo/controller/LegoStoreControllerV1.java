@@ -51,7 +51,8 @@ public class LegoStoreControllerV1 {
 
     @GetMapping("/byTheme/{theme}")
     public List<LegoSet> findByTheme(@PathVariable String theme) {
-        return this.legoSetRepository.findAllByThemeContains(theme);
+        Sort sortByThemeAsc = Sort.by("theme").ascending();
+        return this.legoSetRepository.findAllByThemeContains(theme, sortByThemeAsc);
     }
 
     @GetMapping("/hardThatStartsWithM")
