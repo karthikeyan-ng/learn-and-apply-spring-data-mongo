@@ -43,6 +43,6 @@ public class LegoStoreControllerV1 {
 
     @GetMapping("/{id}")
     public LegoSet findById(@PathVariable String id) {
-        return this.legoSetRepository.findById(id).get();
+        return this.legoSetRepository.findById(id).orElse(null);
     }
 }
