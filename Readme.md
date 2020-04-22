@@ -205,4 +205,8 @@ To start using QueryDSL for Mongo we need to bring in:
 </plugin>
 ```
 
+### How to generate "Q" classes?
+Execute maven goal `mvn package`. Once this process done, navigate to 
+`\target\classes\generated-sources\java\<your-mongodb-documents-package>\Qxxxxx`  
+
 
