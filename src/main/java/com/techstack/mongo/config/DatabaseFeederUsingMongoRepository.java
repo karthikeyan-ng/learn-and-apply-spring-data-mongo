@@ -4,9 +4,9 @@ import com.techstack.mongo.model.DeliveryInfo;
 import com.techstack.mongo.model.LegoSet;
 import com.techstack.mongo.model.LegoSetDifficulty;
 import com.techstack.mongo.model.ProductReview;
+import com.techstack.mongo.repo.LegoSetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,15 +14,15 @@ import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
-//@Service
-public class DatabaseFeeder implements CommandLineRunner {
+@Service
+public class DatabaseFeederUsingMongoRepository implements CommandLineRunner {
 
-    private final MongoTemplate mongoTemplate;
+    private final LegoSetRepository legoSetRepository;
 
     @Override
     public void run(String... args) {
 
-        this.mongoTemplate.dropCollection(LegoSet.class);
+        this.legoSetRepository.deleteAll();
 
         /*
         Lego Sets
@@ -74,14 +74,7 @@ public class DatabaseFeeder implements CommandLineRunner {
                 )
         );
 
-        // This is Normal Insert and it's not a efficient way to insert as many records as possible.
-//        this.mongoTemplate.insert(mcLarenSenna);
-//        this.mongoTemplate.insert(skyPolice);
-//        this.mongoTemplate.insert(milleniumFalcon);
-//        this.mongoTemplate.insert(mindstormsEve);
-
-        // How to do an efficient way to insert many document?
-        this.mongoTemplate.insertAll(
+        this.legoSetRepository.saveAll(
                 List.of(mcLarenSenna, skyPolice, milleniumFalcon, mindstormsEve));
     }
 
