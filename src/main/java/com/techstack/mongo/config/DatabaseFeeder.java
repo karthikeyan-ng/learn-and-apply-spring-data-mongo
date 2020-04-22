@@ -4,17 +4,24 @@ import com.techstack.mongo.model.DeliveryInfo;
 import com.techstack.mongo.model.LegoSet;
 import com.techstack.mongo.model.LegoSetDifficulty;
 import com.techstack.mongo.model.ProductReview;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 
+@RequiredArgsConstructor
 @Service
 public class DatabaseFeeder implements CommandLineRunner {
 
+    private final MongoTemplate mongoTemplate;
+
     @Override
     public void run(String... args) {
+
+        this.mongoTemplate.dropCollection(LegoSet.class);
 
         /*
         Lego Sets
