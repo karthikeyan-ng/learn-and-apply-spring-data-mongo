@@ -244,3 +244,9 @@ Our Manager wants a report on all the lego sets and their **average rating** so 
     - Report purpose  
     - Aggregation  
     - Data Transformation
+    
+## Full Text Search
+Using `@TextIndexed` 
+- you can add it on root level properties
+- You can add it on sub-documents and array elements
+
