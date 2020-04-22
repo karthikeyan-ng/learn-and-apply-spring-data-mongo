@@ -250,3 +250,15 @@ Using `@TextIndexed`
 - you can add it on root level properties
 - You can add it on sub-documents and array elements
 
+## Data Migrations
+At various occations you would thing about migrating your data by  
+- changing the field name
+- marking certain field not to persist
+- removing certain field from the document
+- etc
+
+Dut to this, your existing query may not work as it was.
+
+### How to do a safe migration?
+- By configure [Mongo Bee](https://github.com/mongobee/mongobee)
+- It's a Java tool which helps you to manage changes in your MongoDB and synchronize them with your application.

@@ -40,6 +40,13 @@
 			<version>4.0.0</version>
 		</dependency>
 
+		<!-- Mongo Migrations -->
+		<dependency>
+			<groupId>com.github.mongobee</groupId>
+			<artifactId>mongobee</artifactId>
+			<version>0.13</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
