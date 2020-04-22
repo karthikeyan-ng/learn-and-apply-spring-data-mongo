@@ -1,6 +1,7 @@
 package com.techstack.mongo.controller;
 
 import com.techstack.mongo.model.LegoSet;
+import com.techstack.mongo.model.LegoSetDifficulty;
 import com.techstack.mongo.repo.LegoSetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,5 +50,10 @@ public class LegoStoreControllerV1 {
     @GetMapping("/byTheme/{theme}")
     public List<LegoSet> findByTheme(@PathVariable String theme) {
         return this.legoSetRepository.findAllByThemeContains(theme);
+    }
+
+    @GetMapping("/hardThatStartsWithM")
+    public List<LegoSet> hardThatStartsWithM() {
+        return this.legoSetRepository.findAllByDifficultyAndNameStartsWith(LegoSetDifficulty.HARD, "M");
     }
 }
