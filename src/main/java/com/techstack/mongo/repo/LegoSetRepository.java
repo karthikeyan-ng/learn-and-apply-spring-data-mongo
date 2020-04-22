@@ -21,4 +21,7 @@ public interface LegoSetRepository extends MongoRepository<LegoSet, String> {
     List<LegoSet> findAllByGreatReviews();
 
     List<LegoSet> findAllByThemeIsNot(String theme);
+
+    @Query("{'delivery.inStock' : true}")
+    List<LegoSet> findAllInStock();
 }
