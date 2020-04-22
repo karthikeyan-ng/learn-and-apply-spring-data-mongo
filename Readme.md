@@ -146,6 +146,14 @@ Spring Data can provide proxy implementation of queries based on method names:
 
 For more information refer [JPA Query Methods and Query Creation](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation)
 
+### Custom Queries
+For some business cases, you can't achieve your expectations using Query by method (like findBy). For those cases,
+use `@Query` annotation.  
+
+`@Query("{'_id':'123'}")`  
+
+
+
 
 
 
