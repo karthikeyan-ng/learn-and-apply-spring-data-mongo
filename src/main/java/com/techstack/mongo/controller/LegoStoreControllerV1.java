@@ -8,6 +8,7 @@ import com.techstack.mongo.model.QLegoSet;
 import com.techstack.mongo.repo.LegoSetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -98,5 +99,11 @@ public class LegoStoreControllerV1 {
 
         // pass the query to findAll()
         return (Collection<LegoSet>) this.legoSetRepository.findAll(bestBuysFilter);
+    }
+
+    @GetMapping("fullTextSearch/{text}")
+    public List<LegoSet> fullTextSearch(@PathVariable String text){
+        TextCriteria textCriteria = TextCriteria.forDefaultLanguage().matching(text);
+        return this.legoSetRepository.findAllBy(textCriteria);
     }
 }

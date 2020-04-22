@@ -3,6 +3,7 @@ package com.techstack.mongo.repo;
 import com.techstack.mongo.model.LegoSet;
 import com.techstack.mongo.model.LegoSetDifficulty;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -25,4 +26,6 @@ public interface LegoSetRepository extends MongoRepository<LegoSet, String>, Que
 
     @Query("{'delivery.inStock' : true}")
     List<LegoSet> findAllInStock();
+
+    List<LegoSet> findAllBy(TextCriteria textCriteria);
 }
