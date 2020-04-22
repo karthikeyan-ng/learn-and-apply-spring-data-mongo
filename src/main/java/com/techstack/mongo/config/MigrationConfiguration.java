@@ -1,7 +1,6 @@
 package com.techstack.mongo.config;
 
 import com.github.mongobee.Mongobee;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
