@@ -41,4 +41,8 @@ public class LegoStoreControllerV1 {
         this.legoSetRepository.deleteById(id);
     }
 
+    @GetMapping("/{id}")
+    public LegoSet findById(@PathVariable String id) {
+        return this.legoSetRepository.findById(id).get();
+    }
 }
