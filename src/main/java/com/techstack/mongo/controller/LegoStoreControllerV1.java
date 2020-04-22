@@ -1,7 +1,10 @@
 package com.techstack.mongo.controller;
 
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.techstack.mongo.model.LegoSet;
 import com.techstack.mongo.model.LegoSetDifficulty;
+import com.techstack.mongo.model.QLegoSet;
 import com.techstack.mongo.repo.LegoSetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -79,5 +82,21 @@ public class LegoStoreControllerV1 {
     @GetMapping("/inStock")
     public Collection<LegoSet> findAllInStock(){
         return this.legoSetRepository.findAllInStock();
+    }
+
+    @GetMapping("bestBuys")
+    public Collection<LegoSet> bestBuys(){
+        // build query
+        QLegoSet query = new QLegoSet("query");
+        BooleanExpression inStockFilter =  query.deliveryInfo.inStock.isTrue();
+        Predicate smallDeliveryFeeFilter =  query.deliveryInfo.deliveryFee.lt(50);
+        Predicate hasGreatReviews =  query.reviews.any().rating.eq(10);
+
+        Predicate bestBuysFilter = inStockFilter
+                .and(smallDeliveryFeeFilter)
+                .and(hasGreatReviews);
+
+        // pass the query to findAll()
+        return (Collection<LegoSet>) this.legoSetRepository.findAll(bestBuysFilter);
     }
 }

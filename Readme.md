@@ -209,4 +209,31 @@ To start using QueryDSL for Mongo we need to bring in:
 Execute maven goal `mvn package`. Once this process done, navigate to 
 `\target\classes\generated-sources\java\<your-mongodb-documents-package>\Qxxxxx`  
 
+### Query DSL Composite Filter
+How to Apply multiple filters?  
+    - Are in Stock  
+    - Have delivery fee less than 50  
+    - Have at least one review with a 10 rating  
+    
+```java
+// build query
+QLegoSet query = new QLegoSet("query");
+BooleanExpression inStockFilter =  query.deliveryInfo.inStock.isTrue();
+Predicate smallDeliveryFeeFilter =  query.deliveryInfo.deliveryFee.lt(50);
+Predicate hasGreatReviews =  query.reviews.any().rating.eq(10);
 
+Predicate bestBuysFilter = inStockFilter
+        .and(smallDeliveryFeeFilter)
+        .and(hasGreatReviews);
+
+// pass the query to findAll()
+return (Collection<LegoSet>) this.legoSetRepository.findAll(bestBuysFilter);
+``` 
+
+Add another interface `QuerydslPredicateExecutor` to support Predicate.
+
+```java
+public interface LegoSetRepository extends MongoRepository<LegoSet, String>, QuerydslPredicateExecutor<LegoSet> {
+    
+}
+```

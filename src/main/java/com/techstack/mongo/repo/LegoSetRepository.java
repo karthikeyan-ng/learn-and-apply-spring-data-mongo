@@ -5,10 +5,11 @@ import com.techstack.mongo.model.LegoSetDifficulty;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import java.util.List;
 
-public interface LegoSetRepository extends MongoRepository<LegoSet, String> {
+public interface LegoSetRepository extends MongoRepository<LegoSet, String>, QuerydslPredicateExecutor<LegoSet> {
 
     List<LegoSet> findAllByThemeContains(String theme, Sort sort);
 
