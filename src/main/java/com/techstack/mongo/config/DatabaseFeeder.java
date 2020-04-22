@@ -10,7 +10,10 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -72,6 +75,16 @@ public class DatabaseFeeder implements CommandLineRunner {
                         new ProductReview("James", 10)
                 )
         );
+
+        // This is Normal Insert and it's not a efficient way to insert as many records as possible.
+//        this.mongoTemplate.insert(mcLarenSenna);
+//        this.mongoTemplate.insert(skyPolice);
+//        this.mongoTemplate.insert(milleniumFalcon);
+//        this.mongoTemplate.insert(mindstormsEve);
+
+        // How to do an efficient way to insert many document?
+        this.mongoTemplate.insertAll(
+                List.of(mcLarenSenna, skyPolice, milleniumFalcon, mindstormsEve));
     }
 
 }

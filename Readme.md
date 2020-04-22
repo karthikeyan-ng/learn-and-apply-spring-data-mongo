@@ -12,7 +12,7 @@
 ## References
 Make use of online MongoDB cloud platform to create a Database and querying with it by using https://cloud.mongodb.com
 
-## Insert
+### Insert
 Use `POST` `/legostore/api` to insert json to MongoDB  
 
 > Use `insert()` method from `MongoTemplate` when you don't have an `Id` is null. A new `Id` will get generated.  
@@ -41,7 +41,15 @@ Use `POST` `/legostore/api` to insert json to MongoDB
 }
 ```
 
-## Fetch All
+### InsertAll
+For Bulk insert use `mongoTemplate.insertAll(Collection<T>)`  
+For example: 
+```java
+this.mongoTemplate.insertAll(
+    List.of(mcLarenSenna, skyPolice, milleniumFalcon, mindstormsEve));
+```
+
+### Fetch All
 Use `GET` `/all` to get all the values from MongoDB Collection
 ```json
 [
