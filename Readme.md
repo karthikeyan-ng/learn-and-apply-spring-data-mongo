@@ -281,3 +281,15 @@ What should you test?
 - Any projection or aggregations
 - Any query that is complex enough
 - Don't test base implementations (`findById`) or methods that will get implemented by Spring Data Mongo via a Proxy  
+
+### Add In Memory Mongo Database
+By add the following dependency in your pom file it would initiate an InMemory Mongo DB.  
+```xml
+<!-- Embedded MongoDB for Testing -->
+<dependency>
+    <groupId>de.flapdoodle.embed</groupId>
+    <artifactId>de.flapdoodle.embed.mongo</artifactId>
+    <scope>test</scope>
+</dependency>
+```
+
