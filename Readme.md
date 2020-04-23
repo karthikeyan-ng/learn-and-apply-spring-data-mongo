@@ -265,3 +265,19 @@ Dut to this, your existing query may not work as it was.
     - [MongoCk](https://github.com/cloudyrock/mongock) - Latest
 
 - It's a Java tool which helps you to manage changes in your MongoDB and synchronize them with your application.
+
+## Integration Testing
+### How?
+How can you run integration tests? Against  
+Which server/database?
+
+There is full Spring support for writing integration tests
+
+We can use an embedded (in memory) MongoDB Server for testing.  
+
+### What?
+What should you test?  
+- Any method that uses magic String (`@Query`)
+- Any projection or aggregations
+- Any query that is complex enough
+- Don't test base implementations (`findById`) or methods that will get implemented by Spring Data Mongo via a Proxy  
