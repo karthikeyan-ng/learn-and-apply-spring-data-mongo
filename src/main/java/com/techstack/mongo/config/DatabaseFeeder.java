@@ -3,6 +3,8 @@ package com.techstack.mongo.config;
 import com.techstack.mongo.model.DeliveryInfo;
 import com.techstack.mongo.model.LegoSet;
 import com.techstack.mongo.model.LegoSetDifficulty;
+import com.techstack.mongo.model.PaymentOptions;
+import com.techstack.mongo.model.PaymentType;
 import com.techstack.mongo.model.ProductReview;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
-//@Service
+@Service
 public class DatabaseFeeder implements CommandLineRunner {
 
     private final MongoTemplate mongoTemplate;
@@ -23,6 +25,17 @@ public class DatabaseFeeder implements CommandLineRunner {
     public void run(String... args) {
 
         this.mongoTemplate.dropCollection(LegoSet.class);
+
+        /*
+        Payment Options
+         */
+
+        PaymentOptions creditCardPayment = new PaymentOptions(PaymentType.CreditCard, 0);
+        PaymentOptions payPalPayment = new PaymentOptions(PaymentType.PayPal, 1);
+        PaymentOptions cashPayment = new PaymentOptions(PaymentType.Cash, 10);
+        this.mongoTemplate.insert(creditCardPayment);
+        this.mongoTemplate.insert(payPalPayment);
+        this.mongoTemplate.insert(cashPayment);
 
         /*
         Lego Sets
@@ -37,7 +50,8 @@ public class DatabaseFeeder implements CommandLineRunner {
                         new ProductReview("Dan", 7),
                         new ProductReview("Anna", 10),
                         new ProductReview("John", 8)
-                )
+                ),
+                creditCardPayment
         );
 
         LegoSet skyPolice = new LegoSet(
@@ -48,7 +62,8 @@ public class DatabaseFeeder implements CommandLineRunner {
                 Arrays.asList(
                         new ProductReview("Dan", 5),
                         new ProductReview("Andrew", 8)
-                )
+                ),
+                creditCardPayment
         );
 
         LegoSet mcLarenSenna = new LegoSet(
@@ -59,7 +74,8 @@ public class DatabaseFeeder implements CommandLineRunner {
                 Arrays.asList(
                         new ProductReview("Bogdan", 9),
                         new ProductReview("Christa", 9)
-                )
+                ),
+                payPalPayment
         );
 
         LegoSet mindstormsEve = new LegoSet(
@@ -71,7 +87,8 @@ public class DatabaseFeeder implements CommandLineRunner {
                         new ProductReview("Cosmin", 10),
                         new ProductReview("Jane", 9),
                         new ProductReview("James", 10)
-                )
+                ),
+                cashPayment
         );
 
         // This is Normal Insert and it's not a efficient way to insert as many records as possible.

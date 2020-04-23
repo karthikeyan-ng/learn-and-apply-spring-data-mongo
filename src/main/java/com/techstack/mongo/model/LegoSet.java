@@ -5,6 +5,7 @@ import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -32,16 +33,21 @@ public class LegoSet {
     @Field("delivery")
     private DeliveryInfo deliveryInfo;
 
+    @DBRef
+    private PaymentOptions paymentOptions;
+
     @PersistenceConstructor
     public LegoSet(String name,
                    String theme,
                    LegoSetDifficulty difficulty,
                    DeliveryInfo deliveryInfo,
-                   Collection<ProductReview> reviews){
+                   Collection<ProductReview> reviews,
+                   PaymentOptions paymentOptions){
         this.name = name;
         this.theme = theme;
         this.difficulty = difficulty;
         this.deliveryInfo = deliveryInfo;
+        this.paymentOptions = paymentOptions;
         if(reviews != null){
             this.reviews = reviews;
         }
@@ -76,5 +82,9 @@ public class LegoSet {
 
     public int getNbParts() {
         return nbParts;
+    }
+
+    public PaymentOptions getPaymentOptions() {
+        return paymentOptions;
     }
 }

@@ -293,3 +293,45 @@ By add the following dependency in your pom file it would initiate an InMemory M
 </dependency>
 ```
 
+## Document References
+- In normal RDBMS it's called as relationships (PrimaryKey and ForeignKey)
+- In MongoDB, in order to refer another document in your document you have to References.
+    - using `$ref` and `$id`
+
+Example:  
+LegoSet Collection
+```json
+{
+    "id": "123",
+    "name": "NASA Apollo Saturn V",
+    "paymentOption": {
+        "$ref": "PaymentOptions",
+        "$id": "567"
+    }
+}
+```
+PaymentOptions Collection
+```json
+{
+  "_id": "567",
+  "type": "CreditCard",
+  "fee": 0
+}
+```
+
+### Good to know
+- Eager Loading / Serialization in Spring. Spring would load both parent and sub document
+- You can't traverse the object tree to query based on payment options ```json{ "paymentOptions.fee": 0 }```  
+- No cascading operations by default on parent-child relationships. You need to manually manage them.
+- But you can implement cascading operations via Mongo event listeners like `onBeforeConvert`
+- The Nature of NoSQL is to **minimize relationships** between collections. Use `@DbRef` only when really needed.
+
+### Find By Document Reference Id
+```json
+db.getCollection('legosets').find({
+  "paymentOptions": {
+    "$ref": "paymentOptions",
+    "$id": ObjectId("1233")
+  }
+})
+```

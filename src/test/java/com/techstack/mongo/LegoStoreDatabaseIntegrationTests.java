@@ -3,6 +3,8 @@ package com.techstack.mongo;
 import com.techstack.mongo.model.DeliveryInfo;
 import com.techstack.mongo.model.LegoSet;
 import com.techstack.mongo.model.LegoSetDifficulty;
+import com.techstack.mongo.model.PaymentOptions;
+import com.techstack.mongo.model.PaymentType;
 import com.techstack.mongo.model.ProductReview;
 import com.techstack.mongo.repo.LegoSetRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,8 +45,8 @@ class LegoStoreDatabaseIntegrationTests {
 						new ProductReview("Dan", 7),
 						new ProductReview("Anna", 10),
 						new ProductReview("John", 8)
-				)
-		);
+				),
+				new PaymentOptions(PaymentType.CreditCard, 0));
 
 		LegoSet skyPolice = new LegoSet(
 				"Sky Police Air Base",
@@ -54,8 +56,11 @@ class LegoStoreDatabaseIntegrationTests {
 				Arrays.asList(
 						new ProductReview("Dan", 5),
 						new ProductReview("Andrew", 8)
-				)
-		);
+				),
+				new PaymentOptions(PaymentType.CreditCard, 0));
+
+		this.legoSetRepository.insert(milleniumFalcon);
+		this.legoSetRepository.insert(skyPolice);
 		
 		legoSetRepository.insert(milleniumFalcon);
 		legoSetRepository.insert(skyPolice);

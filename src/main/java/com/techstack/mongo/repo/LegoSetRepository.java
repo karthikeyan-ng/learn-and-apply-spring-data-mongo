@@ -28,4 +28,7 @@ public interface LegoSetRepository extends MongoRepository<LegoSet, String>, Que
     List<LegoSet> findAllInStock();
 
     List<LegoSet> findAllBy(TextCriteria textCriteria);
+
+    @Query("{'paymentOptions.id' : ?0}")
+    List<LegoSet> findByPaymentOptionId(String id);
 }
