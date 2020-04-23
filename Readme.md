@@ -260,5 +260,8 @@ At various occations you would thing about migrating your data by
 Dut to this, your existing query may not work as it was.
 
 ### How to do a safe migration?
-- By configure [Mongo Bee](https://github.com/mongobee/mongobee)
+- By configure 
+    - [Mongo Bee](https://github.com/mongobee/mongobee) - Deprecated
+    - [MongoCk](https://github.com/cloudyrock/mongock) - Latest
+
 - It's a Java tool which helps you to manage changes in your MongoDB and synchronize them with your application.
